@@ -1,0 +1,15 @@
+{
+  "name": "college-erp",
+  "compatibility_date": "2026-07-11",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "pages_build_output_dir": ".vercel/output/static",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "college-erp-db",
+      "database_id": "6f53f6b8-ab8d-4814-8ab7-2b41132e4936"
+    }
+  ]
+}
