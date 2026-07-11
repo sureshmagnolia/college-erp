@@ -16,7 +16,7 @@ export async function getStudentsForExam(examId: string) {
        JOIN courses c ON e.course_id = c.id
        JOIN batches b ON e.batch_id = b.id
        WHERE e.id = ?`
-    ).bind(examId).all();
+    ).bind(examId).all<any>();
 
     if (!examResults || examResults.length === 0) throw new Error('Exam not found');
     const exam = examResults[0];
@@ -29,12 +29,12 @@ export async function getStudentsForExam(examId: string) {
        JOIN students s ON u.id = s.user_id
        WHERE sb.batch_id = ?
        ORDER BY s.admission_no ASC`
-    ).bind(exam.batch_id).all();
+    ).bind(exam.batch_id).all<any>();
 
     // 3. Get existing marks if any
     const { results: existingMarks } = await db.prepare(
       `SELECT student_id, marks_obtained FROM exam_marks WHERE exam_id = ?`
-    ).bind(examId).all();
+    ).bind(examId).all<any>();
 
     return { 
       success: true, 

@@ -9,7 +9,7 @@ import { revalidatePath } from 'next/cache';
 export async function getNaacCategories() {
   const db = getDB();
   try {
-    const { results } = await db.prepare(`SELECT * FROM naac_categories ORDER BY criteria_number ASC`).all();
+    const { results } = await db.prepare(`SELECT * FROM naac_categories ORDER BY criteria_number ASC`).all<any>();
     return { success: true, categories: results };
   } catch (error: any) {
     return { error: error.message };
@@ -59,7 +59,7 @@ export async function getConsolidatedNaacReport() {
        JOIN users u ON s.faculty_id = u.id
        LEFT JOIN departments d ON u.department_id = d.id
        ORDER BY s.date DESC`
-    ).all();
+    ).all<any>();
     return { success: true, records: results };
   } catch (error: any) {
     return { error: error.message };

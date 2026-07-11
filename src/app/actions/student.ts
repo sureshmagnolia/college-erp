@@ -11,7 +11,7 @@ export async function getStudentDashboardData(studentId: string) {
        FROM attendance 
        WHERE student_id = ?
        GROUP BY status`
-    ).bind(studentId).all();
+    ).bind(studentId).all<any>();
 
     let present = 0;
     let total = 0;
@@ -36,7 +36,7 @@ export async function getStudentDashboardData(studentId: string) {
        WHERE em.student_id = ?
        ORDER BY e.date DESC
        LIMIT 5`
-    ).bind(studentId).all();
+    ).bind(studentId).all<any>();
 
     return { 
       success: true, 

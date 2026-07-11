@@ -16,7 +16,7 @@ export async function getFacultyTimetable(facultyId: string, dayOfWeek: number) 
        JOIN courses c ON t.course_id = c.id
        WHERE t.faculty_id = ? AND t.day_of_week = ?
        ORDER BY t.hour_slot ASC`
-    ).bind(facultyId, dayOfWeek).all();
+    ).bind(facultyId, dayOfWeek).all<any>();
     
     return { success: true, timetable: results };
   } catch (error: any) {
@@ -33,7 +33,7 @@ export async function getStudentsForAttendance(timetableId: string, dateStr: str
     // 1. Get the batch ID for this timetable
     const { results: ttResults } = await db.prepare(
       `SELECT batch_id FROM timetable WHERE id = ?`
-    ).bind(timetableId).all();
+    ).bind(timetableId).all<any>();
 
     if (!ttResults || ttResults.length === 0) throw new Error('Timetable not found');
     const batchId = ttResults[0].batch_id;
@@ -46,13 +46,13 @@ export async function getStudentsForAttendance(timetableId: string, dateStr: str
        JOIN students s ON u.id = s.user_id
        WHERE sb.batch_id = ?
        ORDER BY s.admission_no ASC`
-    ).bind(batchId).all();
+    ).bind(batchId).all<any>();
 
     // 3. Check if attendance is already marked for this date + timetable slot
     const { results: existingAttendance } = await db.prepare(
       `SELECT student_id, status FROM attendance 
        WHERE timetable_id = ? AND date = ?`
-    ).bind(timetableId, dateStr).all();
+    ).bind(timetableId, dateStr).all<any>();
 
     return { 
       success: true, 
