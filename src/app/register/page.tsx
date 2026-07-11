@@ -1,6 +1,6 @@
 'use client';
 
-import { registerUser } from '@/app/actions/auth';
+
 import { useState } from 'react';
 
 export default function RegisterPage() {
@@ -13,12 +13,20 @@ export default function RegisterPage() {
     setMessage('');
     
     const formData = new FormData(event.currentTarget);
-    const result = await registerUser(formData);
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await res.json();
     
     if (result.error) {
       setMessage(`Error: ${result.error}`);
     } else {
       setMessage('Registration successful! Your account is pending admin approval.');
+    }
+    } catch (e: any) {
+      setMessage(`Error: ${e.message}`);
     }
     setLoading(false);
   }
