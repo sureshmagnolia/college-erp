@@ -1,7 +1,7 @@
 import { getStudentsForAttendance, submitAttendance } from '@/app/actions/academic';
 import { redirect } from 'next/navigation';
 
-export const runtime = 'edge';
+
 
 // hardcoded for demo
 const FACULTY_ID = 'faculty_1';
