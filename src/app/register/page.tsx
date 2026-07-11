@@ -18,7 +18,7 @@ export default function RegisterPage() {
         method: 'POST',
         body: formData,
       });
-      const result = await res.json();
+      const result = await res.json() as any;
     
     if (result.error) {
       setMessage(`Error: ${result.error}`);
