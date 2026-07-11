@@ -1,6 +1,6 @@
-﻿import { getConsolidatedNaacReport } from '@/app/actions/naac';
+import { getConsolidatedNaacReport } from '@/app/actions/naac';
 
-
+export const runtime = 'edge';
 
 export default async function AdminNaacDashboard() {
   const { records, error } = await getConsolidatedNaacReport();

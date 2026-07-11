@@ -1,6 +1,6 @@
 import { getStudentsForExam, submitExamMarks } from '@/app/actions/exams';
 
-
+export const runtime = 'edge';
 
 export default async function ExamMarksPage({ params }: { params: { exam_id: string } }) {
   const { exam, students, existingMarks, error } = await getStudentsForExam(params.exam_id);

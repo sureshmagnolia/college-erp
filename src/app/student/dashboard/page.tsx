@@ -1,6 +1,6 @@
-﻿import { getStudentDashboardData } from '@/app/actions/student';
+import { getStudentDashboardData } from '@/app/actions/student';
 
-
+export const runtime = 'edge';
 
 // Hardcoded for demo
 const STUDENT_ID = 'student_1';

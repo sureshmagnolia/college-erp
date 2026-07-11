@@ -1,7 +1,7 @@
-﻿import { getFacultyTimetable } from '@/app/actions/academic';
+import { getFacultyTimetable } from '@/app/actions/academic';
 import Link from 'next/link';
 
-
+export const runtime = 'edge';
 
 // Hardcoding for demo. In real app, get from session via NextAuth auth()
 const FACULTY_ID = 'faculty_1'; 
