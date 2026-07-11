@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getFacultyTimetable } from '@/app/actions/academic';
 import Link from 'next/link';
 

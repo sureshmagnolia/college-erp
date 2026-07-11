@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getStudentDashboardData } from '@/app/actions/student';
 
 export const runtime = 'edge';

@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getPendingApprovals, approveUser } from '@/app/actions/auth';
 import { revalidatePath } from 'next/cache';
 

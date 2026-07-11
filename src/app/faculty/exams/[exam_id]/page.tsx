@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getStudentsForExam, submitExamMarks } from '@/app/actions/exams';
 
 export const runtime = 'edge';

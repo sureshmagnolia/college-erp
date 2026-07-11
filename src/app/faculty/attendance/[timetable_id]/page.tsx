@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getStudentsForAttendance, submitAttendance } from '@/app/actions/academic';
 import { redirect } from 'next/navigation';
 

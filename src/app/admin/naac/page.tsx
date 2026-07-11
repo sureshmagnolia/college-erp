@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { getConsolidatedNaacReport } from '@/app/actions/naac';
 
 export const runtime = 'edge';
