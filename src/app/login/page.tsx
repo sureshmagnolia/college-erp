@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { signIn } from 'next-auth/react';
 
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
@@ -9,11 +10,32 @@ export default function LoginPage() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
+    setMessage('');
     
-    // In Phase 1, we simulate the login check since we don't have NextAuth fully configured yet.
-    // We will connect this to NextAuth in the upcoming Phase.
-    setMessage('Login logic will be integrated via NextAuth in the next step.');
-    setLoading(false);
+    const formData = new FormData(event.currentTarget);
+    const identifier = formData.get('identifier') as string;
+    const password = formData.get('password') as string;
+
+    try {
+      const res = await signIn('credentials', {
+        redirect: false,
+        identifier,
+        password,
+      });
+
+      if (res?.error) {
+        // NextAuth returns an error string if authorize() throws
+        setMessage(res.error);
+      } else if (res?.ok) {
+        // Redirect to a role-based dashboard router, or let middleware handle it.
+        // For now, redirect to the root which we'll configure to route correctly.
+        window.location.href = '/'; 
+      }
+    } catch (err: any) {
+      setMessage('An unexpected error occurred.');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
